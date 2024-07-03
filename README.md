@@ -6,8 +6,8 @@ First, a lightweight server sets up the initial connection between the clients a
 
 Notes:
 
-- The latency calculation depend on the system time being very accurate. Suggest sync to the same NTP server first.
-- Server runs on TCP 8085 by default.
+- The latency calculation depends on the system time being very accurate. Suggest sync to the same NTP server first.
+- Server runs on TCP 8085 by default but client communications run on a random UDP socket.
 
 ### Building
 - Needs golang installed for client + server golang build. Clang/LLVM and/or GCC can be used for C++ clients. 
@@ -17,6 +17,7 @@ Notes:
 
 
 ### Server
+- Sets up the connection between clients.
 ```
 $ ./server-go
 Client connected: testkey (IP: 12.42.53.11 Port: 48678)
@@ -24,7 +25,9 @@ Client connected: testkey (IP: 110.12.151.5, Port: 15557)
 ```
 
 ### Client
+- Sends a packet to the other client with: an index, the time and a short message
 - packets per second (PPS) can be controller with the --pps option.
+- Cancel with ctrl+c or SIGINT to display total summary.
 ```
 ./client-go --server <SERVER_HOSTNAME_OR_IP> --key test2
 Received other client address: <OTHER_CLIENT_IP>:15605
