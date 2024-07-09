@@ -2,12 +2,12 @@
 
 Test utilities for [UDP hole punching](https://en.wikipedia.org/wiki/UDP_hole_punching) to establish a P2P connection behind NAT routers.
 
-First, a lightweight server sets up the initial connection between the clients and then the clients interact with each other directly.
+First, a lightweight server sets up the initial connection between the clients and then the clients interact with each other directly using the same socket.
 
 Notes:
 
-- The latency calculation depends on the system time being very accurate. Suggest sync to the same NTP server first.
-- Server runs on TCP 8085 by default but client communications run on a random UDP socket.
+- The latency calculation in the client depends on the system time being very accurate. Suggest sync to the same NTP server first.
+- Server runs on UDP 8085 by default but client communications run on a random UDP socket.
 
 ### Building
 - Needs golang installed for client + server golang build. Clang/LLVM and/or GCC can be used for C++ clients. 
